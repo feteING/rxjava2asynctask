@@ -1,6 +1,9 @@
 # rxjava2asynctask  
-1.io处理ui更新  
-2.中断处理  
+1.io处理，ui处理，io处理ui更新  
+2.中断处理 ui io task (释放处理)  
+3.多线程流式处理  
+io处理完，才开启ui处理，不用担心io没处理完ui就刷新了  
+  
 
 使用  
 1.build.gradle （根目录）  使用的jitpack库  
@@ -12,10 +15,10 @@ allprojects {
     }
 }
 ```
-2. 依赖 rxjava2 与rxandroid  
-    compile 'io.reactivex.rxjava2:rxjava:2.0.1'  
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'  
-    compile 'com.github.feteING:rxjava2asynctask:1.0.2'  
+2.依赖 rxjava2 与rxandroid  
+ compile 'io.reactivex.rxjava2:rxjava:2.0.1'  
+ compile 'io.reactivex.rxjava2:rxandroid:2.0.1'  
+ compile 'com.github.feteING:rxjava2asynctask:1.0.2'  
   
 
 3.io运行  

@@ -1,4 +1,4 @@
-package com.fete.rxjava2task;
+package com.fete.rxjava2;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.fete.rxjava2task.test", appContext.getPackageName());
+        assertEquals("com.fete.rxjava2asynctask", appContext.getPackageName());
     }
 }

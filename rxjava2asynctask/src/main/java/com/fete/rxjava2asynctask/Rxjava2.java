@@ -1,4 +1,4 @@
-package com.fete.rxjava2task;
+package com.fete.rxjava2asynctask;
 
 
 import io.reactivex.Observable;

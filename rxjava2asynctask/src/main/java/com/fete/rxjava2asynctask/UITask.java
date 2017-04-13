@@ -1,4 +1,4 @@
-package com.fete.rxjava2task;
+package com.fete.rxjava2asynctask;
 
 /**
  * 在主线程中执行的任务

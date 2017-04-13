@@ -1,4 +1,4 @@
-package com.fete.rxjava2task;
+package com.fete.rxjava2;
 
 import org.junit.Test;
 

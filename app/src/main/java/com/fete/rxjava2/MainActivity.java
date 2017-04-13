@@ -1,4 +1,4 @@
-package com.fete.rxjava2asynctask;
+package com.fete.rxjava2;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,10 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.fete.rxjava2task.IOTask;
-import com.fete.rxjava2task.Rxjava2;
-import com.fete.rxjava2task.Task;
-import com.fete.rxjava2task.UITask;
+import com.fete.rxjava2asynctask.IOTask;
+import com.fete.rxjava2asynctask.Rxjava2;
+import com.fete.rxjava2asynctask.Task;
+import com.fete.rxjava2asynctask.UITask;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("test_", i + "");
                 }
                 Log.e("_____", Thread.currentThread().getName());
-
             }
         });
     }
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 name = "yhf";
-//                int i = 1/0;
                 //                setT(new TestModel("yhf"));
             }
 
@@ -95,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 //                TestModel t = (TestModel) getT();
                 Log.e("disposable", name);
                 Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
-//                int i = 1/0;
             }
         });
 //        new Handler().postDelayed(new Runnable() {

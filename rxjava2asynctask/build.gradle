@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.feteING'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+
+}
+
+dependencies {
+
+    provided 'io.reactivex.rxjava2:rxjava:2.0.1'
+    provided 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+}

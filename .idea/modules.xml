@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxjava2AsyncTask.iml" filepath="$PROJECT_DIR$/rxjava2AsyncTask.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxjava2task/rxjava2task.iml" filepath="$PROJECT_DIR$/rxjava2task/rxjava2task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxjava2asynctask/rxjava2asynctask.iml" filepath="$PROJECT_DIR$/rxjava2asynctask/rxjava2asynctask.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,5 @@
 # rxjava2asynctask  
-1.io处理，ui处理，io处理ui更新  
+1.io处理，ui处理，io处理ui更新  
 2.中断处理 ui io task (释放处理)  
 3.多线程流式处理  
 io处理完，才开启ui处理，不用担心io没处理完ui就刷新了  

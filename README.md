@@ -1,22 +1,25 @@
-# rxjava2asynctask
-1.io处理ui更新
-2.中断处理
+# rxjava2asynctask  
+1.io处理ui更新  
+2.中断处理  
 
-使用
-1.build.gradle （根目录）  使用的jitpack库
+使用  
+1.build.gradle （根目录）  使用的jitpack库  
+```java
 allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
     }
 }
-2. 依赖 rxjava2 与rxandroid
+```
+2. 依赖 rxjava2 与rxandroid  
+```java
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.github.feteING:rxjava2asynctask:1.0.2'
+    ```
 
-3.
-io运行
+3.io运行  
 ```java
 private void runIO() {
         Rxjava2.execute(new IOTask() {

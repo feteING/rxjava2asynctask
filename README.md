@@ -13,11 +13,10 @@ allprojects {
 }
 ```
 2. 依赖 rxjava2 与rxandroid  
-```java
-    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.github.feteING:rxjava2asynctask:1.0.2'
-    ```
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'  
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'  
+    compile 'com.github.feteING:rxjava2asynctask:1.0.2'  
+  
 
 3.io运行  
 ```java

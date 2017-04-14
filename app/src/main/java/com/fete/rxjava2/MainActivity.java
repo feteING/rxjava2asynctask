@@ -7,9 +7,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fete.rxjava2asynctask.IOTask;
+import com.fete.rxjava2asynctask.PoolIOUITask;
+import com.fete.rxjava2asynctask.PoolTask;
 import com.fete.rxjava2asynctask.Rxjava2;
 import com.fete.rxjava2asynctask.Task;
 import com.fete.rxjava2asynctask.UITask;
+
+import java.util.Random;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -38,7 +42,30 @@ public class MainActivity extends AppCompatActivity {
                 flowable();
             }
         });
-
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                poolUI();
+            }
+        });
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelPool();
+            }
+        });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                poolIO();
+            }
+        });
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                poolIOUI();
+            }
+        });
     }
 
 
@@ -103,11 +130,96 @@ public class MainActivity extends AppCompatActivity {
 //        },1000);
     }
 
+    CompositeDisposable poolDisposable;
+
+    public void poolUI() {
+
+        poolDisposable = Rxjava2.poolInUi(10, 3, new PoolTask() {
+
+
+            @Override
+            public boolean execute() {
+                Random rand = new Random();
+                int i = rand.nextInt(10);
+
+//                for (long k = 0; k < 1000000000L; k++) {
+//
+//                }
+                Log.e("random___", i + "");
+
+
+                if (i == 5) {
+                    Log.e("成功", i + "");
+                    Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                return false;
+            }
+
+        });
+
+//        Toast.makeText(MainActivity.this, "接着往下执行", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void cancelPool() {
+        Rxjava2.cancelPool();
+
+    }
+
+    public void poolIO() {
+        poolDisposable = Rxjava2.poolInIo(10, 3, new PoolTask() {
+
+
+            @Override
+            public boolean execute() {
+                Random rand = new Random();
+                int i = rand.nextInt(10);
+
+//                for (long k = 0; k < 1000000000L; k++) {
+//
+//                }
+                Log.e("random___", i + "");
+                if (i == 5) {
+                    Log.e("成功", i + "");
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+    }
+
+    public void poolIOUI() {
+        poolDisposable = Rxjava2.poolInIOUI(10, 3, new PoolIOUITask() {
+            @Override
+            public boolean preIO() {
+                Random rand = new Random();
+                int i = rand.nextInt(10);
+
+                Log.e("random___", i + "");
+                if (i == 5) {
+                    Log.e("成功", i + "");
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void updateUI() {
+                Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (disposable != null) {
-            disposable.clear();
+        if (poolDisposable != null) {
+            poolDisposable.clear();
         }
     }
 }

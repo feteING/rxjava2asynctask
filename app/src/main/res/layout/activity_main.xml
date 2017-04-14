@@ -34,4 +34,39 @@
         android:layout_alignBottom="@+id/button"
         android:layout_centerHorizontal="true"
         android:text="ui" />
+
+    <Button
+        android:text="pool_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="38dp"
+        android:id="@+id/button4" />
+
+    <Button
+        android:text="pool_io"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button4"
+        android:layout_alignStart="@+id/button2"
+        android:id="@+id/button6" />
+
+    <Button
+        android:text="pool_ioui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button7"
+        android:layout_alignBaseline="@+id/button6"
+        android:layout_alignBottom="@+id/button6"
+        android:layout_alignEnd="@+id/button3" />
+
+    <Button
+        android:text="取消pool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/button6"
+        android:layout_alignStart="@+id/button6" />
 </RelativeLayout>

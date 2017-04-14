@@ -94,19 +94,7 @@ private void runUI() {
 
 ```
 
-4.释放 disposable = rxjava2.excute()
-```java
- @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (disposable != null) {
-            disposable.clear();
-        }
-    }
-
-```
-
-轮询执行  
+4.轮询执行  
 (插入u盘，反应较慢，尝试3次，如果成功执行，失败抛出错误)
 比如你想执行一个任务，执行3次每5秒执行poolIOUI(3,5,Task); io执行成功返回true，调用ui线程更新，如果没有执行成功一直返回false，不执行ui线程  
 ```java
@@ -135,4 +123,15 @@ private void runUI() {
     }
 ```
 
+5.释放 disposable = rxjava2.excute()
+```java
+ @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (disposable != null) {
+            disposable.clear();
+        }
+    }
+
+```
 

@@ -2,7 +2,8 @@
 1.io处理，ui处理，io处理ui更新  
 2.中断处理 ui io task (释放处理)  
 3.线程间流式处理  
-io处理完，才开启ui处理，不用担心io没处理完ui就刷新了  
+4.轮询执行
+io处理完，才开启ui处理，不用担心io没处理完ui就刷新了  
   
 
 使用  
@@ -104,4 +105,33 @@ private void runUI() {
     }
 
 ```
+
+轮询执行  
+比如你想执行一个任务，执行3次每5秒执行poolIOUI(3,5,Task); io执行成功返回true，调用ui线程更新，如果没有执行成功一直返回false，不执行ui线程  
+```java
+ public void poolIOUI() {
+        poolDisposable = Rxjava2.poolInIOUI(10, 3, new PoolIOUITask() {
+            @Override
+            public boolean preIO() {
+                Random rand = new Random();
+                int i = rand.nextInt(10);
+
+                Log.e("random___", i + "");
+                if (i == 5) {
+                    Log.e("成功", i + "");
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void updateUI() {
+                Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+```
+
 

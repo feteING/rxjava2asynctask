@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fete.rxjava2asynctask.IOTask;
-import com.fete.rxjava2asynctask.PoolIOUITask;
+import com.fete.rxjava2asynctask.FLowPoolTask;
 import com.fete.rxjava2asynctask.PoolTask;
 import com.fete.rxjava2asynctask.Rxjava2;
 import com.fete.rxjava2asynctask.Task;
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void poolIOUI() {
-        poolDisposable = Rxjava2.poolInIOUI(10, 3, new PoolIOUITask() {
+        poolDisposable = Rxjava2.poolInIOUI(10, 3, new FLowPoolTask() {
             @Override
             public boolean preIO() {
                 Random rand = new Random();

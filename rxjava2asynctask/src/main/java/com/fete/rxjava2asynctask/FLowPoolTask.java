@@ -3,7 +3,7 @@ package com.fete.rxjava2asynctask;
 /**
  * 在IO与UI线程执行任务
  */
-public abstract class PoolIOUITask<T> {
+public abstract class FLowPoolTask<T> {
     private T t;
 
     public T getT() {
@@ -15,11 +15,11 @@ public abstract class PoolIOUITask<T> {
     }
 
 
-    public PoolIOUITask(T t) {
+    public FLowPoolTask(T t) {
         setT(t);
     }
 
-    public PoolIOUITask() {
+    public FLowPoolTask() {
     }
 
     public abstract boolean preIO();

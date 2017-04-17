@@ -234,7 +234,7 @@ public class Rxjava2 {
     /**
      * pool  io线程每隔second执行一次task,共执行count次,执行成功ui线程更新
      */
-    public static CompositeDisposable poolInIOUI(int count, long second, final PoolIOUITask task) {
+    public static CompositeDisposable poolInIOUI(int count, long second, final FLowPoolTask task) {
         if (disposables != null) {
             disposables.clear();
         }
@@ -356,14 +356,14 @@ public class Rxjava2 {
      * @param task
      * @param inUi 是否在ui线程 ture是在ui线程
      */
-    private static void delayAgain(PoolIOUITask task, final boolean inUi) {
+    private static void delayAgain(FLowPoolTask task, final boolean inUi) {
 
         Disposable subscribe = Observable.just(task)
                 .delay(mTime, TimeUnit.SECONDS)
                 .observeOn(inUi ? AndroidSchedulers.mainThread() : Schedulers.io())
-                .subscribe(new Consumer<PoolIOUITask>() {
+                .subscribe(new Consumer<FLowPoolTask>() {
                     @Override
-                    public void accept(PoolIOUITask t) throws Exception {
+                    public void accept(FLowPoolTask t) throws Exception {
                         int c = mCount;
                         Log.e("count___", c-- + "");
                         boolean b = t.preIO();

@@ -3,6 +3,7 @@ package com.fete.rxjava2asynctask;
 
 import android.util.Log;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -23,6 +24,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class Rxjava2 {
 
+    public static final int MAIN_THREAD = 1;
+    public static final int IO_THREAD = 2;
 
     /**
      * io线程
@@ -140,6 +143,64 @@ public class Rxjava2 {
         }
         return disposables;
 
+    }
+
+
+    static Disposable subscribe;
+
+    /**
+     * 流式处理
+     *
+     * @return
+     */
+    public static CompositeDisposable executeChannel(List<ChainTask> chainTasks) {
+        CompositeDisposable disposables = new CompositeDisposable();
+        if (subscribe != null) {
+            subscribe.dispose();
+        }
+        curIndex = 0;
+
+        if (chainTasks != null && chainTasks.size() > 0) {
+            doChain(chainTasks);//链式处理
+            try {
+                disposables.add(subscribe);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.e("流式处理", "moreTasks is null");
+        }
+        return disposables;
+    }
+
+    static int curIndex = 0;
+
+    private static void doChain(final List<ChainTask> chainTasks) {
+        if (curIndex < chainTasks.size()) {
+            ChainTask chainTask = chainTasks.get(curIndex);
+            curIndex++;
+            doOne(chainTask, new MoreCallBack() {
+                @Override
+                public void result() {
+                    doChain(chainTasks);
+                }
+            });
+
+
+        }
+    }
+
+    private static void doOne(final ChainTask chainTask, final MoreCallBack moreCallBack) {
+        final int type = chainTask.getType();
+        subscribe = Observable.just(chainTask)
+                .observeOn(type == MAIN_THREAD ? AndroidSchedulers.mainThread() : Schedulers.io())
+                .subscribe(new Consumer<ChainTask>() {
+                    @Override
+                    public void accept(ChainTask mt) throws Exception {
+                        mt.doThread();
+                        moreCallBack.result();
+                    }
+                });
     }
 
     static CompositeDisposable disposables = new CompositeDisposable();
@@ -406,6 +467,10 @@ public class Rxjava2 {
         mCount = 0;
         mTime = 0;
 
+    }
+
+    abstract static class MoreCallBack {
+        public abstract void result();
     }
 
 

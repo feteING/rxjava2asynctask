@@ -134,5 +134,47 @@ private void runUI() {
         }
     }
 
+
+
+6.链式处理
+```java
+    /**
+     * 链式处理
+     * 没有传值 主要处理，想要请求B，但必须先请求A 拿到值才能去请求B
+     */
+    private void doMore() {
+        List<ChainTask> lists = new ArrayList<>();
+        lists.add(new ChainTask(Rxjava2.IO_THREAD) {
+            @Override
+            public void doThread() {
+                Log.e("disposable", Thread.currentThread().getName() + "_task1");
+            }
+        });
+        lists.add(new ChainTask(Rxjava2.MAIN_THREAD) {
+            @Override
+            public void doThread() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.e("disposable", Thread.currentThread().getName() + "_task2");
+            }
+        });
+        lists.add(new ChainTask(Rxjava2.IO_THREAD) {
+            @Override
+            public void doThread() {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.e("disposable", Thread.currentThread().getName() + "_task3");
+            }
+        });
+        Rxjava2.executeChannel(lists);
+
+
+    }
 ```
 
